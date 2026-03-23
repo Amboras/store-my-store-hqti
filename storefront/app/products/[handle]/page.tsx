@@ -3,7 +3,7 @@ import { medusaClient } from '@/lib/medusa-client'
 import Image from 'next/image'
 import Link from 'next/link'
 import { ImageIcon, Truck, RotateCcw, Shield, ChevronRight } from 'lucide-react'
-import AddToCart from '@/components/product/add-to-cart'
+import ProductActions from '@/components/product/product-actions'
 import ProductAccordion from '@/components/product/product-accordion'
 
 async function getProduct(handle: string) {
@@ -36,17 +36,6 @@ export default async function ProductPage({
     notFound()
   }
 
-  const variant = product.variants?.[0]
-  const price = variant?.calculated_price
-
-  const formattedPrice =
-    price && price.calculated_amount != null
-      ? new Intl.NumberFormat('en-US', {
-          style: 'currency',
-          currency: price.currency_code?.toUpperCase() || 'USD',
-        }).format(price.calculated_amount / 100)
-      : 'Price not available'
-
   const allImages = [
     ...(product.thumbnail ? [{ url: product.thumbnail }] : []),
     ...(product.images || []).filter((img: any) => img.url !== product.thumbnail),
@@ -71,7 +60,6 @@ export default async function ProductPage({
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-16">
           {/* Product Images */}
           <div className="space-y-3">
-            {/* Main Image */}
             <div className="relative aspect-[3/4] overflow-hidden bg-muted rounded-sm">
               {allImages[0]?.url ? (
                 <Image
@@ -89,7 +77,6 @@ export default async function ProductPage({
               )}
             </div>
 
-            {/* Thumbnail Grid */}
             {allImages.length > 1 && (
               <div className="grid grid-cols-4 gap-3">
                 {allImages.slice(1, 5).map((image: any, idx: number) => (
@@ -122,32 +109,8 @@ export default async function ProductPage({
               <h1 className="text-h2 font-heading font-semibold">{product.title}</h1>
             </div>
 
-            {/* Price */}
-            <div className="flex items-baseline gap-3">
-              <p className="text-xl font-heading font-semibold">{formattedPrice}</p>
-            </div>
-
-            {/* Variant Selector */}
-            {product.variants && product.variants.length > 1 && (
-              <div>
-                <h3 className="text-xs uppercase tracking-widest font-semibold mb-3">
-                  {product.options?.[0]?.title || 'Options'}
-                </h3>
-                <div className="flex flex-wrap gap-2">
-                  {product.variants.map((v: any) => (
-                    <button
-                      key={v.id}
-                      className="px-4 py-2 text-sm border hover:border-foreground transition-colors"
-                    >
-                      {v.title}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* Add to Cart */}
-            {variant && <AddToCart variant={variant} />}
+            {/* Variant Selector + Price + Add to Cart (client component) */}
+            <ProductActions product={product} />
 
             {/* Trust Signals */}
             <div className="grid grid-cols-3 gap-4 py-6 border-t">

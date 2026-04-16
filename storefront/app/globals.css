@@ -4,35 +4,36 @@
 
 @layer base {
   :root {
-    --background: 40 20% 98%;
-    --foreground: 0 0% 10%;
-    --muted: 40 10% 94%;
-    --muted-foreground: 0 0% 45%;
-    --accent: 35 40% 50%;
+    /* SecurityTests — Dark tech / cyber brand palette */
+    --background: 220 20% 98%;
+    --foreground: 220 25% 8%;
+    --muted: 220 15% 94%;
+    --muted-foreground: 220 10% 42%;
+    --accent: 158 75% 38%;        /* cyber green */
     --accent-foreground: 0 0% 100%;
-    --border: 40 10% 88%;
-    --ring: 35 40% 50%;
-    --primary: 0 0% 10%;
+    --border: 220 15% 88%;
+    --ring: 158 75% 38%;
+    --primary: 220 25% 8%;
     --primary-foreground: 0 0% 98%;
     --destructive: 0 72% 51%;
     --destructive-foreground: 0 0% 98%;
 
-    /* Brand colors (dynamically injected from Store.metadata.brand) */
-    /* Access in CSS: var(--brand-primary), var(--brand-secondary) */
-    /* Managed by BrandStyleInjector component */
+    /* Brand colors */
+    --brand-primary: #0e1629;      /* deep navy */
+    --brand-secondary: #10b981;    /* cyber green */
   }
 
   .dark {
-    --background: 0 0% 6%;
-    --foreground: 40 20% 94%;
-    --muted: 0 0% 12%;
-    --muted-foreground: 0 0% 55%;
-    --accent: 35 45% 55%;
+    --background: 220 30% 6%;
+    --foreground: 220 15% 92%;
+    --muted: 220 20% 11%;
+    --muted-foreground: 220 10% 55%;
+    --accent: 158 75% 42%;
     --accent-foreground: 0 0% 100%;
-    --border: 0 0% 16%;
-    --ring: 35 45% 55%;
-    --primary: 40 20% 94%;
-    --primary-foreground: 0 0% 6%;
+    --border: 220 20% 15%;
+    --ring: 158 75% 42%;
+    --primary: 220 15% 92%;
+    --primary-foreground: 220 30% 6%;
     --destructive: 0 72% 51%;
     --destructive-foreground: 0 0% 98%;
   }

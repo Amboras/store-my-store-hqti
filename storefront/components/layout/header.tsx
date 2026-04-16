@@ -82,8 +82,8 @@ export default function Header() {
 
             {/* Logo */}
             <Link href="/" className="flex items-center gap-2">
-              <span className="font-heading text-2xl font-semibold tracking-tight">
-                Store
+              <span className="font-heading text-xl font-bold tracking-tight text-[#0e1629]">
+                Security<span className="text-emerald-600">Tests</span>
               </span>
             </Link>
 
